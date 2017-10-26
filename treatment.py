@@ -41,18 +41,6 @@ df_stage1_test = pd.merge(df_stage1_test,df_stage1_test_text,how='left',on='ID')
 df_stage1_test = df_stage1_test.fillna('')
 
 
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
 
 
 # In[4]:
@@ -61,13 +49,6 @@ df_stage1_test = df_stage1_test.fillna('')
 # Reading the filtered solutions
 df_solution_stage1 = pd.read_csv('data/stage1_solution_filtered.csv')
 df_solution_stage1['Class'] = pd.to_numeric(df_solution_stage1.drop('ID',axis=1).idxmax(axis=1).str[5:])
-
-
-
-# In[ ]:
-
-
-
 
 
 # In[5]:
@@ -116,10 +97,6 @@ df_all = pd.concat((df_stage2_train,df_stage2_test),axis=0)
 
 
 train
-
-
-# In[ ]:
-
 
 
 
@@ -206,17 +183,6 @@ def get_gene_text_count(dframe):
     return dframe
 
 
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
 
 # In[17]:
 
@@ -293,41 +259,6 @@ train = df_all.iloc[:len(train)]
 test = df_all.iloc[len(train):]
 
 
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
 
 # In[24]:
 
@@ -374,12 +305,7 @@ plt.show()
 # Calculating Tf-Idf matrix for the clinical text
 
 #Initializing the tfidf instance from sklearn
-'''
-tfidf = TfidfVectorizer(
-    min_df=5, max_features=16000,strip_accents='unicode',lowercase =True,
-    analyzer='word', token_pattern=r'\w+', use_idf=True, 
-    smooth_idf=True, sublinear_tf=True,ngram_range=(1,2), stop_words = 'english')'''
-# 0.05 5
+
 tfidf = TfidfVectorizer(max_df = 0.95,
     min_df=5,strip_accents='unicode',lowercase =True,
     analyzer='word', token_pattern=r'\w+', use_idf=True, 
@@ -521,70 +447,6 @@ preds /= denom
 submission = pd.DataFrame(preds, columns=['class'+str(c+1) for c in range(9)])
 submission['ID'] = pid
 submission.to_csv('subbmission_xgb.csv', index=False)
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
 
 
 
